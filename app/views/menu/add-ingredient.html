@@ -1,0 +1,36 @@
+<form class="form-horizontal">
+    <div class="form-group">
+        <label class="control-label col-sm-3" for="name">Назва інгедієнту</label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" id="name" ng-model="ingredients.newIngredient.name" placeholder="Назва інгедієнту">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-3" for="sel1">Oдиниця виміру</label>
+        <div class="col-sm-5">
+            <select ng-model="ingredients.newIngredient.measuringUnit" class="form-control" id="sel1"  ng-options="v for v in ingredients.units">
+                
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-3" for="write_off">Cписання</label>
+        <div class="col-sm-5">
+            <select ng-model="ingredients.newIngredient.writeOff" class="form-control" id="write_off"  ng-options="v for v in ingredients.writeOffList">
+                
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-3" for="ingredient_wight">Вага інгредієнта в грамах</label>
+        <div class="col-sm-5">
+            <input type="number" class="form-control" id="name" ng-model="ingredients.newIngredient.ingredientWeight" placeholder="0.00">
+
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-10">
+            <button type="submit" class="btn btn-default" ng-click="ingredients.add()">Зберегти</button>
+        </div>
+    </div>
+</form>

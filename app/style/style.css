@@ -1,0 +1,40 @@
+#wrapper{
+	background-color: #F0E5DE;
+	height: 100vh;
+}
+#page-wrapper{
+	    position: relative;
+    background-color: #fff;
+    box-shadow: 0 1px 1px #ccc;
+}
+#page-wrapper .row{
+	padding: 20px 0;
+}
+#wrapper #page-wrapper  ul{
+	list-style: none;
+	padding: 0;
+}
+#wrapper #page-wrapper  ul li{
+	line-height: 40px;
+    text-align: center;
+    
+}
+#wrapper #page-wrapper  ul li a{
+	line-height: 40px;
+   	display: inline-block;
+    text-decoration: none;
+    color:#333;
+    width:100%;
+    background-color:#f8f8f8;
+}
+#wrapper #page-wrapper  ul li a:hover{
+	color:#555;
+	background-color: #e7e7e7;
+}
+#wrapper #page-wrapper  ul li.active a{
+	color:#555;
+	background-color: white;
+	border-top:1px solid #777;
+	border-bottom:1px solid #777;
+
+}

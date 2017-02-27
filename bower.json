@@ -1,0 +1,21 @@
+{
+  "name": "traider-app",
+  "description": "",
+  "main": "server.js",
+  "authors": [
+    "Lily"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "angular": "^1.6.2"
+  }
+}

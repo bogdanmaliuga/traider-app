@@ -1,0 +1,22 @@
+<div class="container-fluid" id="page-wrapper">
+    <div class="row">
+        <div class="col-xs-2">
+            <div class="sidebar">
+           
+                <ul>
+                    <li ui-sref-active="active"><a ui-sref="menu.product">Toвари</a></li>
+                    <li><a href="">Тех. карти</a></li>
+                    <li><a href="">Напівфабрикати</a></li>
+                    <li ui-sref-active="active" ng-class="{ active: shouldBeActive() }""><a ui-sref="menu.ingredients" href="">Інгрeдієнти</a></li>
+                    <li><a href="">Категорії товарів</a></li>
+                    <li><a href="">Цеха</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-xs-10">
+            <div ui-view>
+
+            </div>
+        </div>
+    </div>
+</div>
