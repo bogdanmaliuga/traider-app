@@ -27,6 +27,7 @@ app.post('/api/user/signup',authController.signup);
 app.get('/api/userList',userController.getUsers);
 app.post('/api/menu/ingridients',ingredientController.saveIngredient);
 app.get('/api/menu/get_ingridients',ingredientController.getIngredients);
+app.post('/api/menu/getingredient',ingredientController.getIngredient);
 
 
 //listen server on port 3000

@@ -33,6 +33,12 @@
                     controller: "IngredientsListController",
                     controllerAs: "ingredients"
                 })
+                .state('menu.editIngredient',{
+                    url: '/ingredients/editingredient/:ingredientId',
+                    templateUrl: "app/views/menu/edit-ingredient.html",
+                    controller: "EditIngredientController",
+                    controllerAs: "editIngredient"
+                })
 
         });
 }());
