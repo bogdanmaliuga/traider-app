@@ -1,30 +1,32 @@
-<form class="form-horizontal">
+<form name="newIngredient.upload_form" class="form-horizontal ">
     <div class="form-group">
         <label class="control-label col-sm-3" for="name">Назва інгедієнту</label>
         <div class="col-sm-5">
-            <input type="text" class="form-control" id="name" ng-model="ingredients.newIngredient.name" placeholder="Назва інгедієнту">
+            <input type="text" class="form-control" id="name" ng-model="newIngredient.name" placeholder="Назва інгедієнту">
         </div>
     </div>
     <div class="form-group">
         <label class="control-label col-sm-3" for="sel1">Oдиниця виміру</label>
         <div class="col-sm-5">
-            <select ng-model="ingredients.newIngredient.measuringUnit" class="form-control" id="sel1"  ng-options="v for v in ingredients.units">
-                
+            <select ng-model="newIngredient.measuringUnit" class="form-control" id="sel1" ng-options="v for v in newIngredient.units">
             </select>
         </div>
     </div>
+    
     <div class="form-group">
-        <label class="control-label col-sm-3" for="write_off">Cписання</label>
+        <label class="control-label col-sm-3" for="write_off">Зоображення</label>
         <div class="col-sm-5">
-            <select ng-model="ingredients.newIngredient.writeOff" class="form-control" id="write_off"  ng-options="v for v in ingredients.writeOffList">
-                
-            </select>
+            <input type="file" ngf-select ng-model="newIngredient.file" name="file" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" /> 
+            Попередній перегляд: <img style="width:100px;" ngf-thumbnail="newIngredient.file" />
         </div>
+
+        <i ng-show="newIngredient.upload_form.file.$error.required">*required</i>
+        <i ng-show="newIngredient.upload_form.file.$error.maxSize">File too large 
+            {{newIngredient.file.size / 1000000|number:1}}MB: max 20M</i>
     </div>
     <div class="form-group">
         <div class="col-sm-offset-3 col-sm-10">
-            
-            <button type="submit" class="btn btn-default" ui-sref="menu.ingredients"  ng-disabled="ingredients.newIngredient.name==null || ingredients.newIngredient.name =='' "  ng-click="ingredients.add()">Зберегти</button>
+            <button type="submit" class="btn btn-default"  ng-disabled="newIngredient.name==null || newIngredient.name =='' " ng-click="newIngredient.add()">Зберегти</button>
         </div>
     </div>
 </form>

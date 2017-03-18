@@ -1,0 +1,49 @@
+<form name="provider.form" class="form-horizontal ">
+    <div class="form-group">
+        <label class="control-label col-sm-3" for="name">Ім'я постачальника</label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" id="name" ng-model="provider.name" placeholder="Ім'я постачальника" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-3" for="account">Розрахунковий рахунок</label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" id="account" ng-model="provider.account" placeholder="Розрахунковий рахунок" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-3" for="address">Адреса</label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" id="address" ng-model="provider.address" placeholder="Адреса" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-3" for="mfo">МФО</label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" id="address" ng-model="provider.mfo" placeholder="МФО" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-3" for="telephone">Телефон</label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" id="telephone" ng-model="provider.telephone" placeholder="Телефон" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-3" for="ipn">ІПН</label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" id="ipn" ng-model="provider.ipn" placeholder="ІПН" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-3" for="comment">Коментар</label>
+        <div class="col-sm-5">
+            <textarea name="comment" class="form-control" ng-model="provider.comment" placeholder="Коментар"></textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-3">
+            <button type="submit" class="btn btn-default" ng-disabled="provider.form.$invalid" ng-click="provider.add()">Додати</button>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,32 @@
+
+<a ui-sref="storage.addSupply" class="btn btn-default">Додати постачання</a>
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+        	<th>#</th>
+            <th>Ім'я</th>
+            <th>Дата закупки</th>
+            
+            <th>Коментар</th>
+            <th>Сума</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="sup in supply.supplys">
+        	<td>{{$index+1}}</td>
+            <td>{{sup.provider.name}}</td>
+            <td>{{sup.date}}</td>
+            <td>{{sup.comment}}</td>
+            <td>{{sup.summary}}</td>
+            <td><a href="">Ред.</a><a ng-click="provider.delete(prov._id)">Вид.</a></td>
+
+        </tr>
+        
+    </tbody>
+</table>
+
+
+

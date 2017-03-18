@@ -1,0 +1,89 @@
+<div class="addsupply-container">
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label col-xs-2">Дата і час</label>
+            <div class="col-sm-2">
+                <input type="date" ng-model="supply.date" class="form-control">
+            </div>
+            <div class="col-sm-1">
+                <input type="number" ng-model="supply.hour" class="form-control">
+            </div>
+            <div class="col-sm-1">
+                <input type="number" ng-model="supply.minute" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword" class="control-label col-xs-2">Постачальник</label>
+            <div class="col-xs-4">
+                <select ng-model="supply.provider" class="form-control" id="sel1" ng-options="provider.name for provider  in supply.providers">
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword" class="control-label col-xs-2">Коментар</label>
+            <div class="col-xs-4">
+                <textarea class="form-control" ng-model="supply.comment"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-2">
+                <label>Назва</label>
+            </div>
+            <div class="col-sm-1">
+                <label>Фасовка</label>
+            </div>
+            <div class="col-sm-2">
+                <label>Кількість</label>
+            </div>
+            <div class="col-sm-2">
+                <label>Ціна за одиницю</label>
+            </div>
+            <div class="col-sm-2">
+                <label>Колишня ціна</label>
+            </div>
+            <div class="col-sm-2">
+                <label>Сума</label>
+            </div>
+            <div class="col-sm-1">
+                
+            </div>
+        </div>
+        <div class="form-group" ng-repeat="s in supply.newSupply">
+            <div class="col-sm-2">
+                <select ng-change="supply.getIngredient(s.ingredient,$index)" ng-model="s.ingredient" class="form-control" id="sel1" ng-options="ingredient.name for ingredient  in supply.ingredients">
+                </select>
+            </div>
+            <div class="col-sm-1">
+              {{s.ingredient.measuringUnit}}
+            </div>
+            <div class="col-sm-2">
+              <input type="number" class="form-control" ng-model="s.count" ng-change="supply.calculateSummary(s,$index)">
+            </div>
+            <div class="col-sm-2">
+              <input type="number" class="form-control" ng-model="s.price" ng-change="supply.calculateSummary(s,$index)" >
+            </div>
+            <div class="col-sm-2">
+                {{s.ingredient.lastPrice}} <sup ng-if="s.ingredient.lastPrice!==0">{{((s.price/s.ingredient.lastPrice-1)*100).toFixed()}} %</sup>
+            </div>
+            <div class="col-sm-2"">{{s.summary}}</div>
+            <div class="col-sm-1"><a href="" ng-click="supply.remove($index)" ng-class="{disabledLink: $index==0}">Вид</a></div>
+        </div>
+        <div class="form-group">
+        <div class="col-xs-12">
+            <a ng-click="supply.add()">Додати елемент</a>
+        </div>
+            
+           
+        </div>
+        <div class="form-group">
+            <div class="col-xs-10 text-right">
+                 <span>Загальна сума:{{supply.summary}}</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-offset-2 col-xs-10">
+                <button type="submit" class="btn btn-primary" ng-click="supply.save()">Зберегти</button>
+            </div>
+        </div>
+    </form>
+</div>

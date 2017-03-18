@@ -38,3 +38,14 @@
 	border-bottom:1px solid #777;
 
 }
+#ingredient-list img{
+	max-width:230px;
+	max-height: 230px;
+}
+.disabledLink{
+	 pointer-events: none;
+	  cursor: not-allowed;
+ 
+  color: grey;
+
+}

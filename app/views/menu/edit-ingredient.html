@@ -14,18 +14,11 @@
             </select>
         </div>
     </div>
-    <div class="form-group">
-        <label class="control-label col-sm-3" for="write_off">Cписання</label>
-        <div class="col-sm-5">
-            <select ng-model="editIngredient.res.writeOff" class="form-control" id="write_off"  ng-options="v for v in editIngredient.writeOffList">
-                
-            </select>
-        </div>
-    </div>
+    
     <div class="form-group">
         <div class="col-sm-offset-3 col-sm-10">
             
-            <button type="submit" class="btn btn-default" ui-sref="menu.ingredients"  ng-disabled="ingredients.newIngredient.name==null || ingredients.newIngredient.name =='' "  ng-click="ingredients.add()">Зберегти</button>
+            <button type="submit" class="btn btn-default" ui-sref="menu.ingredients"    ng-click="editIngredient.update()">Зберегти</button>
         </div>
     </div>
 </form>
