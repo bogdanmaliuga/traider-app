@@ -1,11 +1,12 @@
 (function() {
-    angular.module('TraiderApp', ['ui.router', 'ngFileUpload', 'ui-notification'])
+    angular.module('TraiderApp', ['ui.router', 'ngFileUpload', 'ui-notification','ngStorage'])
         .config(function($stateProvider) {
+
             $stateProvider
                 .state('signUp', {
                     url: "/signup",
-                    templateUrl: "app/views/singup.html",
-                    controller: "SignupController"
+                    templateUrl: "app/views/signup.html",
+                    controller: "HomeController"
                 })
                 .state('menu', {
 
@@ -69,6 +70,13 @@
                     controller: "AddProviderController",
                     controllerAs: "provider"
                 })
+                .state('storage.remains',{
+                    url:'/remains',
+                    templateUrl:'app/views/storage/remains.html',
+                    controller:'RemainsController',
+                    controllerAs:'remains'
+
+                });
 
 
         })

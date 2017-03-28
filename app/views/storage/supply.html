@@ -1,32 +1,51 @@
-
 <a ui-sref="storage.addSupply" class="btn btn-default">Додати постачання</a>
-
-
 <table class="table table-striped">
     <thead>
         <tr>
-        	<th>#</th>
-            <th>Ім'я</th>
-            <th>Дата закупки</th>
-            
+            <th>#</th>
+            <th>Дата</th>
+            <th>Постачальник</th>
             <th>Коментар</th>
+            <th>Товари</th>
             <th>Сума</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="sup in supply.supplys">
-        	<td>{{$index+1}}</td>
+        <tr ng-repeat="sup in supply.supplys" id="item{{$index}}">
+            <td>{{$index+1}}</td>
+            <td>{{sup.date | date :'MMM d, y h:mm:ss a'}}</td>
             <td>{{sup.provider.name}}</td>
-            <td>{{sup.date}}</td>
             <td>{{sup.comment}}</td>
+            <td><span ng-repeat='s in sup.ingredients'>{{s.ingredient.name}} </span>
+                <a ng-click="supply.showDetails($index,sup.ingredients)" ng-click>Всього {{sup.ingredients.length}}</a>
+            </td>
             <td>{{sup.summary}}</td>
             <td><a href="">Ред.</a><a ng-click="provider.delete(prov._id)">Вид.</a></td>
-
         </tr>
-        
+        <tr class="detailed" id='toggle' ng-show="supply.details">
+            <td colspan="7">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Товар</th>
+                            <th>Фасовка</th>
+                            <th>Кількість</th>
+                            <th>Сума</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat='detal in supply.details'>
+                            <td>{{$index+1}}</td>
+                            <td>{{detal.name}}</td>
+                             <td>{{detal.unit}}</td>
+                            <td>{{detal.count}}</td>
+                            <td>{{detal.price*detal.count}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
     </tbody>
 </table>
-
-
-

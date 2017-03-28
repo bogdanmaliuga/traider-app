@@ -1,0 +1,39 @@
+<div class="col-sm-4">
+    <h2>Залишки на складі <small>{{remains.remains.length}}</small></h2>
+    <input ng-model='remains.search' type="text" class="form-control" placeholder="Швидкий пошук">
+</div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Ім'я</th>
+            <th>Тип</th>
+            <th>Категорія</th>
+            <th>Залишки</th>
+            <th>Собівартість</th>
+            <th>Сума</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="sup in remains.remains | filter:remains.search">
+            <td>{{$index+1}}</td>
+            <td>{{sup.name}}</td>
+            <td>інгрідієнт</td>
+            <td>-</td>
+            <td>{{sup.count}} {{sup.measuringUnit}}</td>
+            <td>{{sup.lastPrice}}</td>
+            <td>{{sup.count*sup.lastPrice}}</td>
+        </tr>
+    </tbody>
+    <tbody style="font-style: bold">
+        <tr>
+            <th>$</th>
+            <th>Підсумок</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>{{remains.summary}}</th>
+        </tr>
+    </tbody>
+</table>
