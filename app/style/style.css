@@ -1,6 +1,13 @@
-#wrapper{
-	background-color: #F0E5DE;
+body{
 	height: 100vh;
+	background-color:#566270;
+}
+#wrapper{
+	background-color:#566270;
+	
+}
+.fa-user{
+	padding:0 2px;
 }
 #page-wrapper{
 	    position: relative;

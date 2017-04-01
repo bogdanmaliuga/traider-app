@@ -1,75 +1,39 @@
 var mongoose = require('mongoose');
-var User = require('../datasets/users');
-var jwt = require("jsonwebtoken");
-var app = require('../../server');
+var User = mongoose.model( 'User' );
 
-module.exports.auth = function(req, res) {
-    User.findOne({ email: req.body.email, password: req.body.password }, function(err, user) {
+
+
+exports.signup = function(req, res) {
+    var newuser = new User();
+    
+    newuser.username = req.body.username;
+    newuser.email = req.body.email;
+    newuser.password = req.body.password;
+
+    newuser.save(function(err, savedUser) {
         if (err) {
-            res.json({
-                type: false,
-                data: "Error occured: " + err
-            });
+            res.status(400).send('An account with same username or email already exist');
         } else {
-            if (user) {
-                res.json({
-                    type: true,
-                    data: user,
-                    token: user.token
-                });
-            } else {
-                res.json({
-                    type: false,
-                    data: "Incorrect email/password"
-                });
-            }
+            res.status(201).send({ "username": savedUser.username });
         }
     });
 }
 
-module.exports.signin = function(req, res) {
-    User.findOne({ email: req.body.email, password: req.body.password }, function(err, user) {
-        if (err) {
-            res.json({
-                type: false,
-                data: "Error occured: " + err
-            });
-        } else {
-            if (user) {
-                res.json({
-                    type: false,
-                    data: "User already exists!"
-                });
-            } else {
-                var userModel = new User();
-                userModel.email = req.body.email;
-                userModel.password = req.body.password;
-                userModel.save(function(err, user) {
-                    user.token = jwt.sign(user, app.get('superSecret'));
-                    user.save(function(err, user1) {
-                        res.json({
-                            type: true,
-                            data: user1,
-                            token: user1.token
-                        });
-                    });
-                })
-            }
-        }
-    });
-}
+exports.login = function(req, res, next) {
+    var email = req.body.email;
+    var password = req.body.password;
 
-module.exports.me = function(req, res) {
-    User.findOne({token: req.token}, function(err, user) {
-        if (err) {
-            res.json({
-                type: false,
-                data: "Error occured: " + err
-            });
+    User.findOne({ email: email }, function(err, user) {
+        if (user == null) {
+            res.status(400).end('No account with this email');
         } else {
-            res.json({
-                type: true,
-                data: user
+            req.body.username = user.username;
+            user.comparePassword(password, function(err, isMatch) {
+                if (isMatch && isMatch == true) {
+                    next();
+                } else {
+                    res.status(400).end('Invalid email or password');
+                }
             });
         }
     });

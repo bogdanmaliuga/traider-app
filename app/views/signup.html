@@ -1,11 +1,35 @@
-<div class="container">
-    <div class="row">
-        <div class="col-xs-6 col-xs-offset-3">
-            <form class="form-signin">
-                <input type="text" ng-model="newUser.email" class="form-control" placeholder="Email address" required autofocus>
-                <input type="password" ng-model="newUser.password" class="form-control" placeholder="Password" required>
-                <button class="btn btn-lg btn-primary btn-block btn-signin" ng-click="createUser()">Sign up</button>
-            </form>
+<div class="signup-panel container">
+    <div class="col-md-4 col-md-offset-4 panel panel-default">
+        <h1 align="center" class="signup-element margin-base-vertical">Реєстрація</h1>
+        <h4 align="center" class="ubuntu-text" ng-show="signupError">{{signupError}}</h4>
+        <form ng-submit="signup();" class="signup-form margin-base-vertical">
+            <p class="input-group">
+                <span class="input-group-addon"><span class="fa fa-user"></span></span>
+                <input autofocus ng-model="user.username" type="text" required class="form-control input-lg" name="username" placeholder="ім'я користувача" />
+            </p>
+            <p class="input-group">
+                <span class="input-group-addon"><span class="fa fa-envelope"></span></span>
+                <input ng-model="user.email" type="email" required class="form-control input-lg" name="email" placeholder="email адреса" />
+            </p>
+            <p class="input-group">
+                <span class="input-group-addon"><span class="fa fa-key"></span></span>
+                <input ng-model="user.password" type="password" required class="form-control input-lg" name="password" placeholder="пароль" />
+            </p>
+            <p class="input-group">
+                <span class="input-group-addon"><span class="fa fa-key"></span></span>
+                <input ng-model="user.confirmPassword" placeholder="підтвердження паролю" type="password" required class="form-control input-lg" name="confirmPassword" />
+            </p>
+            <br/>
+            <p class="help-block text-center">
+                <small>Ми ненавидимо спам,не турбуйтесь</small>
+            </p>
+            <p class="text-center">
+                <button type="submit" class="btn btn-success btn-lg">Створити аккаунт</button>
+            </p>
+        </form>
+        <div class="signup-element margin-base-vertical">
+            <h5 align="center">Вже зареєстровані? <a ui-sref="login">Вхід</a></h5>
         </div>
+        <br/>
     </div>
 </div>

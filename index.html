@@ -7,13 +7,15 @@
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="app/style/style.css">
     <link rel="stylesheet" href="bower_components/angular-ui-notification/dist/angular-ui-notification.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
     <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
 </head>
 
 <body>
-    <div id="wrapper">
-        <nav class="navbar navbar-default">
+    <div id="wrapper" >
+        <nav class="navbar navbar-default" ng-controller="NavbarController as vm" >
+       
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
@@ -39,15 +41,16 @@
                     </ul>
                     
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a ui-sref="signUp">Реєстрація</a></li>
-                        <li class="dropdown">
+                        <li><a ui-sref="signup" ng-if='!vm.isLog'>Реєстрація</a></li>
+                        <li><a ui-sref="login" ng-if='!vm.isLog'>Вхід</a></li>
+                        <li class="dropdown" ng-if='vm.isLog'>
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Користувач <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#">Профіль</a></li>
                                 
                                 <li><a href="#">Налаштування</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="#">Вихід</a></li>
+                                <li><a href="#" ng-click="vm.logout()">Вихід</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -68,9 +71,12 @@
     <script src="bower_components/angular-ui-notification/dist/angular-ui-notification.min.js"></script>
     <script src="bower_components/ngstorage/ngStorage.min.js"></script>
     <script src="app/app.js"></script>
-    <script src="app/services/MainServce.js"></script>
-    <script src="app/controllers/HomeController.js"></script>
-    <script src="app/controllers/menuController.js"></script>
+    <script src='app/constant.js'></script>
+    <script src="app/services/Services.js"></script>
+    <script src="app/controllers/NavbarController.js"></script>
+    <script src="app/controllers/LoginController.js"></script>
+    <script src="app/controllers/SignUpController.js"></script>
+    <script src="app/controllers/MenuController.js"></script>
     <script src="app/controllers/menu/IngridientsListController.js"></script>
     <script src="app/controllers/menu/AddIngredientController.js"></script>
     <script src="app/controllers/menu/EditIngredientCtrl.js"></script>
@@ -80,6 +86,7 @@
     <script src="app/controllers/storage/ProviderController.js"></script>
     <script src="app/controllers/storage/AddProviderController.js"></script>
     <script src="app/controllers/storage/RemainsController.js"></script>
+    
 
 
 
