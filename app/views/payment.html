@@ -1,0 +1,52 @@
+<div class="container-fluid payment-page" id="page-wrapper">
+    <div class="row">
+        <div class="col-xs-12">
+            <span my-current-time="format"></span>
+        </div>
+        <div class="col-xs-3">
+            <div class="elements-block">
+                <button ng-click="showMenu='bar'">БАР</button>
+                <button ng-click="showMenu='kitchen'">КУХНЯ</button>
+                <ul ng-if='showMenu=="bar"'>
+                    <li ng-click="vm.addToList(bar)" ng-repeat="bar in vm.bar">{{bar.name}}</li>
+                </ul>
+                <ul ng-if="showMenu=='kitchen'">
+                </ul>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="buy-list" id="exportthis">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Ім.я</th>
+                            <th>Кількість</th>
+                            <th>Вартість</th>
+                            <th>Дії</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in vm.listProducts">
+                            <td>{{$index}}</td>
+                            <td>{{item.name}}</td>
+                            <td><input type="number" ng-model="item.countForBuy" ng-change="vm.caclTotalPrice(vm.listProducts)"><span>{{item.measuringUnit}}</span></td>
+                            <td>{{item.countForBuy * item.lastPrice}}</td>
+                            <td><i ng-click="vm.removeFromList($index)" class="fa fa-close"></i></td>
+
+                        </tr>
+                    </tbody>
+                    
+                </table>
+                <h3>Total price:<span>{{vm.totalOrderPrice}}</span></h3>
+            </div>
+        </div>
+        <div class="col-xs-3">
+            <div class="options-list">
+                <button ng-disabled="vm.listProducts.length<1 || vm.totalOrderPrice<0 || !vm.totalOrderPrice" ng-click="vm.makeOrder()">ЗРОБИТИ ЗАМОВЛЕННЯ</button>
+                <button ng-disabled="!vm.isNow" ng-disabled="" ng-click="vm.finishOrder()">ВИДАТИ ЧЕК</button>
+                <button ng-disabled="!vm.isNow" ng-disabled="" ng-click="vm.cancelOrder()">CКАСУВАТИ ЗАМОВЛЕННЯ</button>
+            </div>
+        </div>
+    </div>
+</div>

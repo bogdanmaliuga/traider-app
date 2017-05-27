@@ -1,0 +1,81 @@
+<form name="vm.upload_form" class="form-horizontal ">
+    <div class="form-group">
+        <label class="control-label col-sm-3" for="name">Назва товару</label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" id="name" ng-model="vm.name" placeholder="Назва продукту">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-3" for="write_off">Зоображення</label>
+        <div class="col-sm-5">
+            <input type="file" ngf-select ng-model="vm.file" name="file" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" /> 
+            Попередній перегляд: <img style="width:100px;" ngf-thumbnail="vm.file" />
+        </div>
+
+        <i ng-show="vm.upload_form.file.$error.required">*required</i>
+        <i ng-show="vm.upload_form.file.$error.maxSize">File too large 
+            {{newIngredient.file.size / 1000000|number:1}}MB: max 20M</i>
+    </div>
+    <div class="product-ingredient-container">
+        <h2>Iнгредієнти</h2>
+        <div class="form-group">
+            <div class="col-sm-2">
+                <label>Назва</label>
+            </div>
+            <div class="col-sm-1">
+                <label>Фасовка</label>
+            </div>
+            <div class="col-sm-2">
+                <label>Маса нетто</label>
+            </div>
+            <div class="col-sm-2">
+                <label>Маса брутто</label>
+            </div>
+            <div class="col-sm-2">
+                <label>Відсоток втрат</label>
+            </div>
+            <div class="col-sm-2">
+                <label>Ціна</label>
+            </div>
+            <div class="col-sm-1">
+            </div>
+        </div>
+        <div class="form-group" ng-repeat="s in vm.newProduct">
+            <div class="col-sm-2">
+                <select ng-change="vm.getIngredient(s.ingredient,$index)" ng-model="s.ingredient" class="form-control" id="sel1" ng-options="ingredient.name for ingredient  in vm.ingredients">
+                </select>
+            </div>
+            <div class="col-sm-1">
+                {{s.ingredient.measuringUnit}}
+            </div>
+            
+            <div class="col-sm-2">
+                <input type="number"  class="form-control" ng-model="s.brutto" ng-change="vm.calculateProcent(s,$index)">
+            </div>
+            <div class="col-sm-2">
+                <input type="number" ng-disabled="s.netto>=s.brutto" class="form-control" ng-model="s.netto" ng-change="vm.calculateProcent(s,$index)">
+            </div>
+            <div class="col-sm-2">
+                <input type="number" ng-disabled="true" class="form-control" ng-model="s.procent">
+            </div>
+            <div class="col-sm-2">
+                {{s.price}}
+            </div>
+           
+            <div class="col-sm-1 "><a href=" " ng-click="supply.remove($index) " ng-class="{disabledLink: $index==0} ">Вид</a></div>
+        </div>
+    </div>
+    <div class="form-group ">
+        <div class="col-xs-12 ">
+            <a ng-click="vm.addNew() ">Додати елемент</a>
+        </div>
+            
+    </div>
+    
+    
+    <div class="form-group ">
+        <div class="col-sm-offset-3 col-sm-9 ">
+            <button type="submit " class="btn btn-default "  ng-disabled="vm.name==null || vm.name=='' " ng-click="vm.add() ">Зберегти</button>
+        </div>
+    </div>
+</form>

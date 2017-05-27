@@ -1,6 +1,32 @@
-<ul>
-	<li ng-repeat="menu in menus.users">
-		<strong>{{menu.email}}</strong>
-		<strong>{{menu.password}}</strong>
-	</li>
-</ul>
+
+<a ui-sref="menu.addProduct" class="btn btn-default">Додати продукт</a>
+
+
+<table class="table table-bordered" id="ingredient-list" >
+	<thead>
+		<tr>
+			<td>№</td>
+			<td>Назва продукту</td>
+			<td>Дія</td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="ingredient in ingredients.ingredientsList">
+			<td>
+				{{$index+1}}
+			</td>
+			<td>
+				{{ingredient.name}}
+			</td>
+			<td>
+				<img ng-src="..{{ingredient.img}}" alt="">
+			</td>
+			<td>
+				{{ingredient.measuringUnit}}
+			</td>
+			<td>
+				<a class="btn btn-default" ui-sref="menu.editIngredient({ ingredientId: ingredient._id })" ng-click="ingredients.edit(ingredient._id)">Редагувати</a>
+			</td>
+		</tr>
+	</tbody>
+</table>

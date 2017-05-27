@@ -1,5 +1,5 @@
 (function() {
-    angular.module('TraiderApp', ['ui.router', 'ngFileUpload', 'ui-notification', 'ngStorage'])
+    angular.module('TraiderApp', ['ui.router', 'ngFileUpload', 'ui-notification', 'ngStorage','ui.bootstrap'])
         .run(function($rootScope, AuthService, $state) {
             $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams) {
                 
@@ -10,12 +10,19 @@
                 }
             });
         })
-        .config(function($httpProvider) {
+        .config(function($httpProvider,$locationProvider) {
             $httpProvider.interceptors.push('AuthInterceptor');
+            
         })
         .config(function($stateProvider) {
 
             $stateProvider
+                .state('home', {
+                    
+                    url: '/home',
+                    templateUrl: "app/views/home.html",
+                    controller:"HomeController"
+                })
                 .state('signup', {
                     url: '/signup',
                     templateUrl: "app/views/signup.html",
@@ -34,11 +41,33 @@
                     authenticate: true
 
                 })
+                .state('order',{
+                    url: '/order',
+                    templateUrl: "app/views/order.html",
+                    controller: "OrderController",
+                    controllerAs: "vm",
+                    authenticate: true
+                })
+                .state('payment',{
+                    url: '/payment/:tableId',
+                    templateUrl: "app/views/payment.html",
+                    controller: "PaymentController",
+                    controllerAs: "vm",
+                    authenticate: true
+                })
                 .state('menu.product', {
                     url: '/products',
                     templateUrl: "app/views/menu/product-list.html",
                     controller: "menuController",
                     controllerAs: "menus",
+                    authenticate: true
+
+                })
+                 .state('menu.addProduct', {
+                    url: '/products/add_product',
+                    templateUrl: "app/views/menu/add-product.html",
+                    controller: "AddProcuctController",
+                    controllerAs: "vm",
                     authenticate: true
 
                 })
@@ -106,6 +135,7 @@
                     authenticate: true
 
                 })
+
                 .state('storage.remains', {
                     url: '/remains',
                     templateUrl: 'app/views/storage/remains.html',

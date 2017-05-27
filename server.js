@@ -16,7 +16,9 @@ var users=require('./server/datasets/users');
 var userController = require('./server/controllers/user-controller');
 var ingredientController = require('./server/controllers/ingredient-controller');
 var providerController = require('./server/controllers/provider-controller');
-var supplyController = require('./server/controllers/supply-controller')
+var supplyController = require('./server/controllers/supply-controller');
+var ordersController = require('./server/controllers/orders-controller');
+var productController = require('./server/controllers/product-controller');
 
 //connect to local database
 mongoose.connect(config.database);
@@ -29,7 +31,7 @@ app.set('superSecret', config.secret);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// app.use(morgan('dev'));
+app.use(morgan('dev'));
 
 //static dirs
 app.use('/bower_components', express.static(__dirname + "/bower_components"));
@@ -46,7 +48,7 @@ app.use(function(req, res, next) {
 });
 
 //express-jwt.Need secter to all pages unless
-app.use(expressJwt({ secret: app.get('superSecret') }).unless({ path: ['/','/signup','/login']}));
+app.use(expressJwt({ secret: app.get('superSecret') }).unless({ path: ['/','/signup','/login','/home']}));
 
 //apis
 app.get('/', function(req, res) {
@@ -76,6 +78,12 @@ app.delete('/api/provider/:id', providerController.deleteProvider);
 
 app.get('/api/supply', supplyController.getSupplys);
 app.post('/api/supply', supplyController.saveSupply);
+
+app.post('/api/order',ordersController.addOrder);
+app.post('/api/getorder',ordersController.getCurrentOrder);
+app.post('/api/update_order',ordersController.updateOrder);
+
+app.post('/api/menu/product',productController.saveProduct)
 
 
 //listen server on port 3000

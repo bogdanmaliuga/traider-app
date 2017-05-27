@@ -1,61 +1,177 @@
-body{
-	height: 100vh;
-	background-color:#566270;
+body {
+    height: 100vh;
+    background-color: #566270;
 }
-#wrapper{
-	background-color:#566270;
-	
+
+.navbar {
+    margin-bottom: 0;
 }
-.fa-user{
-	padding:0 2px;
+
+#wrapper {
+    background-color: #566270;
 }
-#page-wrapper{
-	    position: relative;
+
+.fa-user {
+    padding: 0 2px;
+}
+
+#page-wrapper {
+    position: relative;
     background-color: #fff;
     box-shadow: 0 1px 1px #ccc;
 }
-#page-wrapper .row{
-	padding: 20px 0;
+
+#page-wrapper .row {
+    padding: 20px 0;
 }
-#wrapper #page-wrapper  ul{
-	list-style: none;
-	padding: 0;
+
+#wrapper #page-wrapper ul {
+    list-style: none;
+    padding: 0;
 }
-#wrapper #page-wrapper  ul li{
-	line-height: 40px;
+
+#wrapper #page-wrapper ul li {
+    line-height: 40px;
     text-align: center;
-    
 }
-#wrapper #page-wrapper  ul li a{
-	line-height: 40px;
-   	display: inline-block;
+
+#wrapper #page-wrapper ul li a {
+    line-height: 40px;
+    display: inline-block;
     text-decoration: none;
-    color:#333;
-    width:100%;
-    background-color:#f8f8f8;
+    color: #333;
+    width: 100%;
+    background-color: #f8f8f8;
 }
-#wrapper #page-wrapper  ul li a:hover{
-	color:#555;
-	background-color: #e7e7e7;
-}
-#wrapper #page-wrapper  ul li.active a{
-	color:#555;
-	background-color: white;
-	border-top:1px solid #777;
-	border-bottom:1px solid #777;
 
+#wrapper #page-wrapper ul li a:hover {
+    color: #555;
+    background-color: #e7e7e7;
 }
-#ingredient-list img{
-	max-width:230px;
-	max-height: 230px;
-}
-.disabledLink{
-	 pointer-events: none;
-	  cursor: not-allowed;
- 
-  color: grey;
 
+#wrapper #page-wrapper ul li.active a {
+    color: #555;
+    background-color: white;
+    border-top: 1px solid #777;
+    border-bottom: 1px solid #777;
 }
-.detailed{
-	background-color: #c4c4c4 !important;
+
+#ingredient-list img {
+    max-width: 230px;
+    max-height: 230px;
+}
+
+.disabledLink {
+    pointer-events: none;
+    cursor: not-allowed;
+    color: grey;
+}
+
+.detailed {
+    background-color: #c4c4c4 !important;
+}
+
+.order-page ul {
+    overflow: hidden;
+    display: inline-block;
+    padding: 0 200px;
+}
+
+.order-page li {
+    width: 400px;
+    height: 200px;
+    float: left;
+    display: inline-block;
+    position: relative;
+    margin-right: 30px;
+}
+
+.order-page li span {
+    position: absolute;
+    top: 40%;
+    left: 45%;
+    color: white;
+}
+#page-wrapper.payment-page{
+	background-color: #FAF0D8;
+}
+.payment-page .options-list{
+	 box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+    background-color: #ffffff;
+    overflow: hidden;
+    min-height: 200px;
+}
+button[disabled], html input[disabled]{
+	opacity: 0.5;
+}
+.payment-page .options-list button{
+	display: block;
+	width: 250px;
+	font-size: 15px;
+    position: relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: #fff;
+    background: #448AFF;
+    border: 0;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.3);
+    -webkit-transition: all 200ms ease-in-out;
+    transition: all 200ms ease-in-out;
+    cursor: pointer;
+    overflow: hidden;
+    margin:10px auto;
+    line-height: 40px;
+}
+.payment-page .buy-list{
+	 box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+    background-color: #ffffff;
+    overflow: hidden;
+    min-height: 200px;
+}
+
+.payment-page .elements-block {
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+    background-color: #ffffff;
+    overflow: hidden;
+    min-height: 200px;
+}
+
+.payment-page .elements-block button {
+    font-size: 1.8rem;
+    position: relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: #fff;
+    background: #448AFF;
+    border: 0;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.3);
+    -webkit-transition: all 200ms ease-in-out;
+    transition: all 200ms ease-in-out;
+    cursor: pointer;
+    overflow: hidden;
+    display: inline-block;
+    float: left;
+    width: 50%;
+    line-height: 40px;
+}
+.payment-page ul{
+	margin-bottom: 0;
+}
+.payment-page .elements-block li {
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    background-color: #fff;
+}
+
+.payment-page .elements-block li:hover {
+    cursor: pointer;
+    transition: all .3s linear;
+     background-color: #ccc;
+}
+.product-ingredient-container{
+    background: #f9f9f9;
 }

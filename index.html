@@ -4,10 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <link rel="icon" href="app/img/favicon.ico" type="image/x-icon" />
+    <base href="/">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="app/style/style.css">
     <link rel="stylesheet" href="bower_components/angular-ui-notification/dist/angular-ui-notification.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="app/style/style.css">
+
+    <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="bower_components/angular-bootstrap/ui-bootstrap-csp.css">
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
     <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
 </head>
@@ -34,7 +38,7 @@
                         <li><a href="#">Фінанси</a></li>
                         <li ui-sref-active="active"><a ui-sref="menu">Меню</a></li>
                         <li ui-sref-active="active"><a ui-sref="storage">Склад</a></li>
-                        <li><a href="#">Маркетинг</a></li>
+                        <li ui-sref-active="active"><a ui-sref="order">Ресторан</a></li>
                         <li><a href="#">Доступ</a></li>
                         <li><a href="#">Налаштування</a></li>
                        
@@ -65,9 +69,14 @@
         </div>
     </div>
     <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.min.js"></script>
     <script src="node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="bower_components/ng-file-upload/ng-file-upload-shim.js"></script>
     <script src="bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
     <script src="bower_components/angular-ui-notification/dist/angular-ui-notification.min.js"></script>
     <script src="bower_components/ngstorage/ngStorage.min.js"></script>
     <script src="app/app.js"></script>
@@ -86,6 +95,10 @@
     <script src="app/controllers/storage/ProviderController.js"></script>
     <script src="app/controllers/storage/AddProviderController.js"></script>
     <script src="app/controllers/storage/RemainsController.js"></script>
+    <script src="app/controllers/OrderController.js"></script>
+    <script src="app/controllers/PaymentController.js"></script>
+    <script src="app/controllers/HomeController.js"></script>
+    <script src="app/controllers/CancelController.js"></script>
     
 
 
