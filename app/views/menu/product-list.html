@@ -2,16 +2,23 @@
 <a ui-sref="menu.addProduct" class="btn btn-default">Додати продукт</a>
 
 
+
+<button ng-json-export-excel data="vm.products" nested-data-property="ingredients" report-fields="{_id: 'Ідентифікатор', name: 'Назва',cost:'Собівартість', lastPrice: 'Ціна','weight':'Вага'}" nested-report-fields="{'ingredient.name': 'Назва інгредієнту', brutto: 'Вага брутто',netto:'Вага нетто',price:'Вартість',procent:'Втрати'}" filename ="'тех-карта'+today" separator="," class="btn btn-default btn-search">Завантажити технічі карти</button>
+
 <table class="table table-bordered" id="ingredient-list" >
 	<thead>
 		<tr>
 			<td>№</td>
 			<td>Назва продукту</td>
+			<td>Зображення</td>
+			<td>Вага</td>
+			<td>Cобівартість</td>
+			<td>Ціна</td>
 			<td>Дія</td>
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="ingredient in ingredients.ingredientsList">
+		<tr ng-repeat="ingredient in vm.products">
 			<td>
 				{{$index+1}}
 			</td>
@@ -19,11 +26,15 @@
 				{{ingredient.name}}
 			</td>
 			<td>
-				<img ng-src="..{{ingredient.img}}" alt="">
+				<img ng-src="..{{ingredient.imgUrl}}" alt="">
 			</td>
 			<td>
-				{{ingredient.measuringUnit}}
+				{{ingredient.weight}}
 			</td>
+			<td>
+				{{ingredient.cost}}
+			</td>
+			<td>{{ingredient.lastPrice}}</td>
 			<td>
 				<a class="btn btn-default" ui-sref="menu.editIngredient({ ingredientId: ingredient._id })" ng-click="ingredients.edit(ingredient._id)">Редагувати</a>
 			</td>

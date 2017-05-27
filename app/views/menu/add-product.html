@@ -25,12 +25,13 @@
             <div class="col-sm-1">
                 <label>Фасовка</label>
             </div>
+              <div class="col-sm-2">
+                <label>Маса брутто</label>
+            </div>
             <div class="col-sm-2">
                 <label>Маса нетто</label>
             </div>
-            <div class="col-sm-2">
-                <label>Маса брутто</label>
-            </div>
+          
             <div class="col-sm-2">
                 <label>Відсоток втрат</label>
             </div>
@@ -48,26 +49,29 @@
             <div class="col-sm-1">
                 {{s.ingredient.measuringUnit}}
             </div>
-            
+            <div class="col-sm-2">
+                <input type="number"  class="form-control" ng-model="s.netto" ng-change="vm.calculateProcent(s,$index)">
+            </div>
             <div class="col-sm-2">
                 <input type="number"  class="form-control" ng-model="s.brutto" ng-change="vm.calculateProcent(s,$index)">
             </div>
+            
             <div class="col-sm-2">
-                <input type="number" ng-disabled="s.netto>=s.brutto" class="form-control" ng-model="s.netto" ng-change="vm.calculateProcent(s,$index)">
+                {{s.procent.toFixed(2)}}
             </div>
             <div class="col-sm-2">
-                <input type="number" ng-disabled="true" class="form-control" ng-model="s.procent">
-            </div>
-            <div class="col-sm-2">
-                {{s.price}}
+                {{s.price.toFixed(2)}}
             </div>
            
-            <div class="col-sm-1 "><a href=" " ng-click="supply.remove($index) " ng-class="{disabledLink: $index==0} ">Вид</a></div>
+            <div class="col-sm-1 "><a href=" " ng-click="vm.remove($index) " ng-class="{disabledLink: $index==0} ">Вид</a></div>
         </div>
+        
     </div>
     <div class="form-group ">
         <div class="col-xs-12 ">
             <a ng-click="vm.addNew() ">Додати елемент</a>
+            <h1>Собівартість: {{vm.summaryPrice.toFixed(2)}}</h1>
+            <h1>Загальна вага: {{vm.weight}} </h1>
         </div>
             
     </div>

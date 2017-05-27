@@ -11,17 +11,18 @@ module.exports.saveProduct = function(req, res) {
     res.end();
 
 }
-module.exports.updateIngredient = function(req, res) {
+module.exports.updateProduct= function(req, res) {
+    console.log(req.body);
 
-    Ingredient.findById(req.body._id, function(err, ingredient) {
+    Product.findById(req.body.id, function(err, product) {
         if (err) throw err;
 
 
-        ingredient.name = req.body.name;
-        ingredient.measuringUnit = req.body.measuringUnit;
+        product.lastPrice = req.body.lastPrice;
+        
 
 
-        ingredient.save(function(err) {
+        product.save(function(err) {
             if (err) throw err;
 
 
@@ -32,12 +33,12 @@ module.exports.updateIngredient = function(req, res) {
 
 }
 
-module.exports.getIngredients = function(req, res) {
-    Ingredient.find(function(err, ingredient) {
+module.exports.getProducts= function(req, res) {
+    Product.find(function(err, product) {
         if (err)
             res.send(err);
 
-        res.json(ingredient);
+        res.json(product);
     });
 }
 module.exports.getIngredient = function(req, res) {

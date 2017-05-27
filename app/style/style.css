@@ -92,8 +92,12 @@ body {
     left: 45%;
     color: white;
 }
+#page-wrapper.order-page{
+    height: 100vh;
+}
 #page-wrapper.payment-page{
 	background-color: #FAF0D8;
+    height: 100vh;
 }
 .payment-page .options-list{
 	 box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);

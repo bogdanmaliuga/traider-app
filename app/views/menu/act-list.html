@@ -1,0 +1,38 @@
+<table class="table table-bordered" id="ingredient-list" >
+	<thead>
+		<tr>
+			<td>№</td>
+			<td>Назва продукту</td>
+			<td>Зображення</td>
+			<td>Вага</td>
+			<td>Собівартість</td>
+			<td>Ціна</td>
+			<td>Дія</td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="ingredient in vm.products">
+			<td>
+				{{$index+1}}
+			</td>
+			<td>
+				{{ingredient.name}}
+			</td>
+			<td>
+				<img ng-src="..{{ingredient.imgUrl}}" alt="">
+			</td>
+			<td>
+				{{ingredient.weight}}
+			</td>
+			<td>
+				{{ingredient.cost}}
+			</td>
+			<td>
+				<input type="number" ng-model="ingredient.lastPrice">
+			</td>
+			<td>
+				<a class="btn btn-default" ng-click="vm.edit(ingredient._id,ingredient.lastPrice)">Зберегти</a>
+			</td>
+		</tr>
+	</tbody>
+</table>

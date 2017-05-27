@@ -83,7 +83,9 @@ app.post('/api/order',ordersController.addOrder);
 app.post('/api/getorder',ordersController.getCurrentOrder);
 app.post('/api/update_order',ordersController.updateOrder);
 
-app.post('/api/menu/product',productController.saveProduct)
+app.post('/api/menu/product',productController.saveProduct);
+app.get('/api/menu/product',productController.getProducts);
+app.put('/api/menu/product',productController.updateProduct);
 
 
 //listen server on port 3000

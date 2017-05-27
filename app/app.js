@@ -1,5 +1,5 @@
 (function() {
-    angular.module('TraiderApp', ['ui.router', 'ngFileUpload', 'ui-notification', 'ngStorage','ui.bootstrap'])
+    angular.module('TraiderApp', ['ui.router', 'ngFileUpload', 'ui-notification', 'ngStorage','ui.bootstrap','ngSanitize','ngCsv','ngJsonExportExcel'])
         .run(function($rootScope, AuthService, $state) {
             $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams) {
                 
@@ -59,7 +59,15 @@
                     url: '/products',
                     templateUrl: "app/views/menu/product-list.html",
                     controller: "menuController",
-                    controllerAs: "menus",
+                    controllerAs: "vm",
+                    authenticate: true
+
+                })
+                .state('menu.act', {
+                    url: '/products/act',
+                    templateUrl: "app/views/menu/act-list.html",
+                    controller: "ActMenuController",
+                    controllerAs: "vm",
                     authenticate: true
 
                 })

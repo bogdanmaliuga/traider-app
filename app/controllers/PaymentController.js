@@ -35,6 +35,9 @@
         $http.get('/api/menu/get_ingridients').then(function(res) {
             vm.bar = res.data;
         });
+        $http.get('/api/menu/product').then(function(res) {
+            vm.products = res.data;
+        });
 
         $http.post('/api/getorder', {
             tableId: $stateParams.tableId

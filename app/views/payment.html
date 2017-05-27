@@ -4,13 +4,14 @@
             <span my-current-time="format"></span>
         </div>
         <div class="col-xs-3">
-            <div class="elements-block">
+            <div class="elements-block" ng-init="showMenu='kitchen'">
                 <button ng-click="showMenu='bar'">БАР</button>
                 <button ng-click="showMenu='kitchen'">КУХНЯ</button>
                 <ul ng-if='showMenu=="bar"'>
                     <li ng-click="vm.addToList(bar)" ng-repeat="bar in vm.bar">{{bar.name}}</li>
                 </ul>
                 <ul ng-if="showMenu=='kitchen'">
+                    <li ng-click="vm.addToList(kitchen)" ng-repeat="kitchen in vm.products">{{kitchen.name}}</li>
                 </ul>
             </div>
         </div>

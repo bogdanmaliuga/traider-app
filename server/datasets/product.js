@@ -4,7 +4,9 @@ module.exports = mongoose.model('Product',{
 	netto:Number,
 	ingredients:Array,
 	weight:Number,
-	cost:Number
+	cost:Number,
+	imgUrl:String,
+	lastPrice:Number
 
 	
 });
