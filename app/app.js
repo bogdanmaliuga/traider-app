@@ -152,6 +152,24 @@
                     authenticate: true
 
 
+                })
+                .state('menu.сoupon', {
+                    url: '/coupon',
+                    templateUrl: 'app/views/menu/coupon.html',
+                    controller: 'CouponController',
+                    controllerAs: 'vm',
+                    authenticate: true
+
+
+                })
+                .state('menu.class', {
+                    url: '/class',
+                    templateUrl: 'app/views/menu/class.html',
+                    controller: 'ClassController',
+                    controllerAs: 'vm',
+                    authenticate: true
+
+
                 });
 
 

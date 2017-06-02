@@ -25,12 +25,15 @@
             }
         })
 
-    .controller('PaymentController', ['$scope', '$state', '$uibModal', 'Notification', '$http', '$stateParams', function($scope, $state,$uibModal, Notification,  $http, $stateParams) {
+    .controller('PaymentController', ['$scope', '$state', '$uibModal', 'Notification', '$http', '$stateParams', function($scope, $state, $uibModal, Notification, $http, $stateParams) {
         var vm = this;
         $scope.format = 'M/d/yy h:mm:ss a';
         vm.listProducts = [];
         vm.totalOrderPrice = 0;
         vm.isNow = false;
+        vm.currentLists = [];
+        vm.sale = 1;
+        getCurrentOrder();
 
         $http.get('/api/menu/get_ingridients').then(function(res) {
             vm.bar = res.data;
@@ -38,26 +41,63 @@
         $http.get('/api/menu/product').then(function(res) {
             vm.products = res.data;
         });
+        $http.get('/api/menu/class').then(function(res) {
+            vm.classList = res.data;
+        });
 
-        $http.post('/api/getorder', {
-            tableId: $stateParams.tableId
-        }).then(function(res) {
+        function getCurrentOrder(argument) {
+            $http.post('/api/getorder', {
+                tableId: $stateParams.tableId
+            }).then(function(res) {
 
-            console.log(res);
-            if (res.data) {
-                vm.listProducts = res.data.items;
-                vm.totalOrderPrice = res.data.totalPrice;
-                vm.id = res.data._id;
-                vm.isNow = res.data.isNow
-            } else {
-                vm.listProducts = [];
-                vm.id = null;
-                vm.totalOrderPrice = 0;
-                vm.isNow = false;
+
+                if (res.data) {
+                    vm.listProducts = res.data.items;
+                    vm.totalOrderPrice = res.data.totalPrice;
+                    vm.id = res.data._id;
+                    vm.isNow = res.data.isNow;
+                    console.log(res.data.sale);
+                    vm.sale = res.data.sale;
+                } else {
+                    vm.listProducts = [];
+                    vm.id = null;
+                    vm.totalOrderPrice = 0;
+                    vm.isNow = false;
+                    vm.sale = 1;
+                }
+
+
+            });
+        }
+
+        vm.openClassModal = function(index) {
+            if (vm.listProducts['' + index + ''].class) {
+                vm.currentLists = vm.listProducts['' + index + ''].class;
             }
 
+            return $uibModal.open({
+                animation: true,
+                templateUrl: 'app/views/class-modal.html',
+                controller: 'ClassiferController',
+                controllerAs: 'vm',
+                windowClass: 'class-modal',
+                resolve: {
+                    body: function() {
+                        return vm.classList;
+                    },
+                    current: function() {
+                        return vm.currentLists;
+                    }
 
-        });
+                }
+            }).result.then(function(selectedItem) {
+
+                vm.listProducts['' + index + '']['class'] = selectedItem;
+
+
+
+            });
+        }
         vm.caclTotalPrice = function(arr) {
             vm.totalOrderPrice = 0;
             angular.forEach(arr, function(val, key) {
@@ -66,9 +106,10 @@
             })
         }
         vm.addToList = function(bar) {
-            console.log(bar);
+            bar['countForBuy']=1
             if (vm.listProducts.length == 0) {
                 vm.listProducts.push(bar);
+                
             } else {
                 vm.check = false;
                 angular.forEach(vm.listProducts, function(val, key) {
@@ -93,9 +134,10 @@
             vm.caclTotalPrice(vm.listProducts);
         }
         vm.makeOrder = function(argument) {
+            console.log(vm.sale);
 
             if (vm.id) {
-                console.log('update')
+
                 var body = {
                     date: new Date(),
                     id: vm.id,
@@ -104,14 +146,15 @@
                     isNow: true,
                     totalPrice: vm.totalOrderPrice,
                     comment: null,
-                    isCancel: false
+                    isCancel: false,
+                    sale: vm.sale
 
 
                 }
                 $http.post('/api/update_order', body).then(function(res) {
-                    console.log(res);
+
                     Notification({ message: res.data.message }, 'success');
-                    $state.reload();
+                    getCurrentOrder();
 
                 });
 
@@ -126,14 +169,15 @@
                     isNow: true,
                     isCancel: false,
                     totalPrice: vm.totalOrderPrice,
-                    comment: null
+                    comment: null,
+                    sale: vm.sale
 
 
                 }
                 $http.post('/api/order', body).then(function(res) {
-                    console.log(res);
+
                     Notification({ message: res.data.message }, 'success');
-                    $state.reload();
+                    getCurrentOrder();
 
                 });
             }
@@ -148,17 +192,29 @@
                 isNow: false,
                 isCancel: false,
                 totalPrice: vm.totalOrderPrice,
-                comment: null
+                comment: null,
+                sale: vm.sale
 
 
             }
             $http.post('/api/update_order', body).then(function(res) {
-                console.log(res);
+
                 Notification({ message: "Замовлення закрито" }, 'success');
                 $state.go('order');
 
             });
 
+        }
+        vm.makeSale = function() {
+            $http.get('/api/coupon/' + vm.code).then(function(res) {
+
+
+                vm.sale = res.data.sale;
+
+
+                vm.makeOrder();
+
+            });
         }
         vm.cancelOrder = function() {
             var body = {
@@ -169,7 +225,8 @@
                 isNow: false,
                 isCancel: true,
                 totalPrice: vm.totalOrderPrice,
-                comment: "dasd"
+                comment: "dasd",
+                sale: vm.sale
 
 
             }

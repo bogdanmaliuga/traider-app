@@ -19,7 +19,7 @@ var providerController = require('./server/controllers/provider-controller');
 var supplyController = require('./server/controllers/supply-controller');
 var ordersController = require('./server/controllers/orders-controller');
 var productController = require('./server/controllers/product-controller');
-
+var couponController = require('./server/controllers/coupon-controller');
 //connect to local database
 mongoose.connect(config.database);
 mongoose.Promise = require('bluebird');
@@ -86,6 +86,14 @@ app.post('/api/update_order',ordersController.updateOrder);
 app.post('/api/menu/product',productController.saveProduct);
 app.get('/api/menu/product',productController.getProducts);
 app.put('/api/menu/product',productController.updateProduct);
+
+app.get('/api/menu/class',productController.getClass);
+app.post('/api/menu/class',productController.saveClass);
+app.delete('/api/menu/class/:id',productController.deleteClass);
+
+app.post('/api/coupon',couponController.saveCoupon);
+app.get('/api/coupon/:code',couponController.getCoupon);
+app.get('/api/coupons',couponController.getCoupons);
 
 
 //listen server on port 3000

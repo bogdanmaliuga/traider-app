@@ -3,13 +3,13 @@
         .controller('ActMenuController', ['$scope', '$state', '$http', function($scope, $state, $http) {
             var vm = this;
             $http.get('/api/menu/product').then(function(res) {
-                    
-                    vm.products = res.data;
-                });
-            vm.edit=function(id,price) {
-                var body={
-                    id:id,
-                    lastPrice:price
+
+                vm.products = res.data;
+            });
+            vm.edit = function(id, price) {
+                var body = {
+                    id: id,
+                    lastPrice: price
                 }
                 $http.put('/api/menu/product', body).then(function(res) {
                     console.log(res);
@@ -23,11 +23,11 @@
         }])
         .controller('menuController', ['$scope', '$state', '$http', function($scope, $state, $http) {
             var vm = this;
-            $scope.today=new Date();
+            $scope.today = new Date();
             $http.get('/api/menu/product').then(function(res) {
-                    console.log(res.data);
-                    vm.products = res.data;
-                });
+                console.log(res.data);
+                vm.products = res.data;
+            });
             $scope.shouldBeActive = function() {
 
                 return $state.includes('menu.addIngredient');
@@ -101,7 +101,7 @@
                             weight: vm.weight,
                             cost: vm.summaryPrice,
                             imgUrl: vm.img,
-                            lastPrice:vm.summaryPrice
+                            lastPrice: vm.summaryPrice
 
 
 
@@ -126,6 +126,34 @@
 
                 return $state.includes('menu.addProduct');
 
+            }
+
+        }])
+        .controller('ClassController', ['$scope', '$state', '$http', 'Upload', function($scope, $state, $http, Upload) {
+
+            var vm = this;
+            vm.newClass = "";
+            vm.classList=[];
+            getClass();
+            vm.addNewClass = function() {
+                var body = {
+                    name: vm.newClass
+                }
+                $http.post('/api/menu/class', body).then(function(res) {
+                    getClass();
+                    vm.newClass="";
+                });
+            }
+            vm.removeClass=function(id) {
+                $http.delete('/api/menu/class/'+id).then(function(res) {
+                   getClass();
+                })
+            }
+
+            function getClass() {
+                $http.get('/api/menu/class').then(function(res) {
+                    vm.classList=res.data;
+                });
             }
 
         }]);

@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Product = require('../datasets/product');
+var Сlassifier = require('../datasets/classifier');
 
 
 module.exports.saveProduct = function(req, res) {
@@ -11,6 +12,35 @@ module.exports.saveProduct = function(req, res) {
     res.end();
 
 }
+module.exports.saveClass= function(req, res) {
+    
+    var classefier = new Сlassifier(req.body);
+    classefier.save();
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    
+    res.end();
+
+}
+module.exports.getClass= function(req, res) {
+    Сlassifier.find(function(err, clas) {
+        if (err)
+            res.send(err);
+
+        res.json(clas);
+    });
+}
+module.exports.deleteClass= function(req, res) {
+
+    Сlassifier.remove({
+        _id: req.params.id
+    }, function(err, bear) {
+        if (err)
+            res.send(err);
+
+        res.json({ message: 'Класифікатор видалено' });
+    });
+}
+
 module.exports.updateProduct= function(req, res) {
     console.log(req.body);
 

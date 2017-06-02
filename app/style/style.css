@@ -21,10 +21,12 @@ body {
     box-shadow: 0 1px 1px #ccc;
 }
 
-#page-wrapper .row {
+#page-wrapper > .row {
     padding: 20px 0;
 }
-
+#class-list td{
+    vertical-align: middle;
+}
 #wrapper #page-wrapper ul {
     list-style: none;
     padding: 0;

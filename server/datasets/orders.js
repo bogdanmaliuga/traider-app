@@ -6,6 +6,7 @@ module.exports = mongoose.model('Orders',{
 	isNow:Boolean,
 	isCancel:false,
 	comment:String,
-	totalPrice:Number
+	totalPrice:Number,
+	sale:Number
 	
 });

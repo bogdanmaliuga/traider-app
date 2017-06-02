@@ -34,6 +34,7 @@ module.exports.updateOrder = function(req, res) {
         order.isNow=req.body.isNow;
         order.isCancel=req.body.isCancel;
         order.comment=req.body.comment;
+        order.sale=req.body.sale;
         order.save(function(err) {
             if (err) throw err;
             res.json({message:'Успішно оновлено'});
