@@ -188,6 +188,15 @@
                     authenticate: true
 
 
+                })
+                .state('storage.invert', {
+                    url: '/invert',
+                    templateUrl: 'app/views/storage/invert.html',
+                    controller: 'InvertController',
+                    controllerAs: 'vm',
+                    authenticate: true
+
+
                 });
 
 

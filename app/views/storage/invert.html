@@ -1,0 +1,29 @@
+<div class="col-sm-4">
+    <h2>Інвентеризація <small>{{vm.remains.length}}</small></h2>
+    <input ng-model='vm.search' type="text" class="form-control" placeholder="Швидкий пошук">
+</div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Ім'я</th>
+            <th>Залишки</th>
+            <th>Фактична вага</th>
+            <th>Надлишок/недостача</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="sup in vm.remains | filter:vm.search">
+            <td>{{$index+1}}</td>
+            <td>{{sup.name}}</td>
+            <td>{{sup.count}} {{sup.measuringUnit}}</td>
+            <td><input type="number" ng-model="sup.ew" ng-change="sup.res=sup.count-sup.ew"></td>
+            <td>{{sup.res.toFixed(2)}}</td>
+
+        </tr>
+
+    </tbody>
+
+</table>
+<button ng-json-export-excel data="vm.remains"  report-fields="{_id: 'Ідентифікатор', name: 'Назва',count:'Залишки',ew:'Фактична вага',res:'Надлишок\Недостача'}"  filename ="'Інветеризація за '+vm.today" separator="," class="btn btn-default btn-search">Завантажити інветеризацію</button>
