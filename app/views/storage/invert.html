@@ -17,8 +17,8 @@
         <tr ng-repeat="sup in vm.remains | filter:vm.search">
             <td>{{$index+1}}</td>
             <td>{{sup.name}}</td>
-            <td>{{sup.count}} {{sup.measuringUnit}}</td>
-            <td><input type="number" ng-model="sup.ew" ng-change="sup.res=sup.count-sup.ew"></td>
+            <td>{{sup.count.toFixed(2)}} {{sup.measuringUnit}}</td>
+            <td><input type="number" ng-model="sup.ew" ng-change="sup.res=sup.ew-sup.count"></td>
             <td>{{sup.res.toFixed(2)}}</td>
 
         </tr>
