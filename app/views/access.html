@@ -29,7 +29,7 @@
                   </select>
             </td>
             <td>
-              <a class="btn btn-default" ng-click="vm.update(user.role,user._id)">Зберегти</a>
+              <a  ng-disabled="vm.user.role_code!=1" class="btn btn-default" ng-click="vm.update(user.role,user._id)">Зберегти</a>
             </td>
           </tr>
         </tbody>

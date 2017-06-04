@@ -39,7 +39,7 @@
                     </tbody>
                 </table>
                 <h3>Ціна : <span>{{(vm.totalOrderPrice *vm.sale).toFixed(2)}}</span></h3>
-                <h3 ng-if="vm.sale!=1">Вартість : <span>{{vm.totalOrderPrice}.toFixed(2)}</span></h3>
+                <h3 ng-if="vm.sale!=1">Вартість : <span>{{vm.totalOrderPrice}.toFixed(2)}}</span></h3>
                 <h3 ng-if="vm.sale!=1">Різниця : <span>{{(vm.totalOrderPrice - vm.totalOrderPrice *vm.sale).toFixed(2)}}</span></h3>
             </div>
         </div>

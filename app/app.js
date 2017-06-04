@@ -179,6 +179,15 @@
                     authenticate: true
 
 
+                })
+                .state('profile', {
+                    url: '/profile',
+                    templateUrl: 'app/views/profile.html',
+                    controller: 'ProfileController',
+                    controllerAs: 'vm',
+                    authenticate: true
+
+
                 });
 
 

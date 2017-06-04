@@ -1,9 +1,17 @@
 (function() {
   angular.module('TraiderApp')
-    .controller('AccessController', ['$scope', '$state', '$http', 'Notification', function($scope, $state, $http, Notification) {
+    .controller('AccessController', ['$scope', '$state', '$http', 'Notification','Storage', function($scope, $state, $http, Notification,Storage) {
       var vm = this;
       vm.roles = ["Системний адміністратор", "Бугалтер", "Бармен", "Офіціант"];
       vm.users = [];
+      vm.nameUSER=Storage.getUsername();
+
+
+      $http.get('/api/user/'+vm.nameUSER).then(function(res) {
+        console.log(res);
+        vm.user=res.data;
+      });
+
       $http.get('/api/users').then(function(res) {
         vm.users = res.data;
         console.log(res.data);

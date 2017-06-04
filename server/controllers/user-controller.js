@@ -50,6 +50,14 @@ exports.getUsers = function(req, res) {
     res.json(user);
   });
 }
+exports.getUser = function(req, res) {
+  User.findOne({username:req.params.name},function(err, user) {
+    if (err)
+      res.send(err);
+
+    res.json(user);
+  });
+}
 exports.updateRole = function(req, res) {
   console.log(req.body);
   User.findOne({

@@ -1,0 +1,24 @@
+<div class="container-fluid order-page" id="page-wrapper">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="well well-sm">
+        <div class="row">
+          <div class="col-sm-6 col-md-2">
+            <img src="http://placehold.it/200x200" alt="" class="img-rounded img-responsive" />
+          </div>
+          <div class="col-sm-6 col-md-8">
+            <h4>{{vm.user.username}}</h4>
+
+            <p>
+              <i style="padding-right: 10px;" class="glyphicon glyphicon-envelope"></i>{{vm.user.email}}
+              <br />
+              <i style="padding-right: 10px;" class="glyphicon glyphicon-globe"></i>{{vm.user.role}}
+              <br />
+              <i style="padding-right: 10px;" class="glyphicon glyphicon-gift"></i>{{vm.user.created_at | date}}</p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

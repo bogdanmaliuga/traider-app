@@ -97,6 +97,7 @@ app.get('/api/coupons',couponController.getCoupons);
 
 app.get('/api/users',userController.getUsers);
 app.post('/api/users/:id',userController.updateRole);
+app.get('/api/user/:name',userController.getUser);
 
 
 //listen server on port 3000
