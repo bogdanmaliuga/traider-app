@@ -29,12 +29,12 @@
 				<img ng-src="..{{ingredient.imgUrl}}" alt="">
 			</td>
 			<td>
-				{{ingredient.weight}}
+				{{ingredient.weight.toFixed(2)}}
 			</td>
 			<td>
-				{{ingredient.cost}}
+				{{ingredient.cost.toFixed(2)}}
 			</td>
-			<td>{{ingredient.lastPrice}}</td>
+			<td>{{ingredient.lastPrice.toFixed(2)}}</td>
 			<td>
 				<a class="btn btn-default" ui-sref="menu.editIngredient({ ingredientId: ingredient._id })" ng-click="ingredients.edit(ingredient._id)">Редагувати</a>
 			</td>

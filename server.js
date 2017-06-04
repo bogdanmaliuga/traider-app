@@ -27,7 +27,7 @@ mongoose.Promise = require('bluebird');
 //set secret for auth
 app.set('superSecret', config.secret);
 
-//body-parser 
+//body-parser
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -94,6 +94,9 @@ app.delete('/api/menu/class/:id',productController.deleteClass);
 app.post('/api/coupon',couponController.saveCoupon);
 app.get('/api/coupon/:code',couponController.getCoupon);
 app.get('/api/coupons',couponController.getCoupons);
+
+app.get('/api/users',userController.getUsers);
+app.post('/api/users/:id',userController.updateRole);
 
 
 //listen server on port 3000

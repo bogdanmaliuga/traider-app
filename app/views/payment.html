@@ -33,14 +33,14 @@
                             <td>{{item.name}}</td>
                             <td>
                             <input  type="number" ng-model="item.countForBuy" ng-change="vm.caclTotalPrice(vm.listProducts)"><span>{{item.measuringUnit}}</span></td>
-                            <td>{{item.countForBuy * item.lastPrice}}</td>
+                            <td>{{(item.countForBuy * item.lastPrice).toFixed(2)}}</td>
                             <td><i ng-click="vm.removeFromList($index)" class="fa fa-close"></i> <i ng-click="vm.openClassModal($index);" class="fa fa-cog"></i></td>
                         </tr>
                     </tbody>
                 </table>
-                <h3>Ціна : <span>{{vm.totalOrderPrice *vm.sale}}</span></h3>
-                <h3 ng-if="vm.sale!=1">Вартість : <span>{{vm.totalOrderPrice}}</span></h3>
-                <h3 ng-if="vm.sale!=1">Різниця : <span>{{vm.totalOrderPrice - vm.totalOrderPrice *vm.sale}}</span></h3>
+                <h3>Ціна : <span>{{(vm.totalOrderPrice *vm.sale).toFixed(2)}}</span></h3>
+                <h3 ng-if="vm.sale!=1">Вартість : <span>{{vm.totalOrderPrice}.toFixed(2)}</span></h3>
+                <h3 ng-if="vm.sale!=1">Різниця : <span>{{(vm.totalOrderPrice - vm.totalOrderPrice *vm.sale).toFixed(2)}}</span></h3>
             </div>
         </div>
         <div class="col-xs-3">

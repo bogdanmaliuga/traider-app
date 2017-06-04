@@ -6,6 +6,8 @@ var userSchema = new mongoose.Schema({
   username: {type: String, unique:true},
   email: {type: String, unique:true},
   password: String,
+  role:{type:String,default:"Офіціант"},
+  role_code:{type:Number,default:4},
   created_at:{type:Date,default:Date.now}
 });
 userSchema.pre('save', function(next) {

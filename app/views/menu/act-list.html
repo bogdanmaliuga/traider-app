@@ -22,10 +22,10 @@
 				<img ng-src="..{{ingredient.imgUrl}}" alt="">
 			</td>
 			<td>
-				{{ingredient.weight}}
+				{{ingredient.weight.toFixed(2)}}
 			</td>
 			<td>
-				{{ingredient.cost}}
+				{{ingredient.cost.toFixed(2)}}
 			</td>
 			<td>
 				<input type="number" ng-model="ingredient.lastPrice">

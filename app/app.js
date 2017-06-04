@@ -2,9 +2,9 @@
     angular.module('TraiderApp', ['ui.router', 'ngFileUpload', 'ui-notification', 'ngStorage','ui.bootstrap','ngSanitize','ngCsv','ngJsonExportExcel'])
         .run(function($rootScope, AuthService, $state) {
             $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams) {
-                
+
                 if (toState.authenticate && toState.name !== 'login' && !AuthService.isLoggedIn()) {
-                   
+
                     event.preventDefault();
                     $state.transitionTo('login');
                 }
@@ -12,13 +12,13 @@
         })
         .config(function($httpProvider,$locationProvider) {
             $httpProvider.interceptors.push('AuthInterceptor');
-            
+
         })
         .config(function($stateProvider) {
 
             $stateProvider
                 .state('home', {
-                    
+
                     url: '/home',
                     templateUrl: "app/views/home.html",
                     controller:"HomeController"
@@ -166,6 +166,15 @@
                     url: '/class',
                     templateUrl: 'app/views/menu/class.html',
                     controller: 'ClassController',
+                    controllerAs: 'vm',
+                    authenticate: true
+
+
+                })
+                .state('access', {
+                    url: '/access',
+                    templateUrl: 'app/views/access.html',
+                    controller: 'AccessController',
                     controllerAs: 'vm',
                     authenticate: true
 
